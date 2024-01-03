@@ -1,4 +1,3 @@
-
 import "leaflet/dist/leaflet.css";
 import styles from "./Styles/map.module.css";
 import { MapContainer,TileLayer ,Marker, Popup, useMapEvents} from "react-leaflet";

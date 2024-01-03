@@ -8,6 +8,7 @@ const dormitorySchema = new Schema(
         location:String,
         img:String,
         price:String,
+        coordinates:Array,
         detail:String
     },
     {timestamps:true,}

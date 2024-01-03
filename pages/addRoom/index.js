@@ -10,10 +10,18 @@ export default function addRoom(){
   const [img , setImg] = useState("");
   const [price , setPrice] = useState("");
   const [detail , setDetail] =useState("");
+  const [coordinates, setCoordinates] = useState('');
+
+  const handleCoordinatesChange = (e) => {
+    // Split the input string into an array using comma as a delimiter
+    const newCoordinates = e.target.value.split(' ');
+    setCoordinates(newCoordinates);
+  };
+  
   const router = useRouter();
   const handleSubmitt = async (e) => {
     e.preventDefault();
-    if(!type || !dorm_name || !location || !img || !price || !detail ){
+    if(!type || !dorm_name || !location || !img || !price || !detail || !coordinates ){
       console.log("Error!");
       alert("empty!!!");
     }
@@ -24,7 +32,7 @@ export default function addRoom(){
                   headers: {
                     "Content-type": "application/json",
                   },
-                  body: JSON.stringify({type,dorm_name,location,img,price,detail }),
+                  body: JSON.stringify({type,dorm_name,location,img,price,detail,coordinates }),
                 });
                 if (res.ok) {
                   alert("addPost Success");
@@ -58,11 +66,15 @@ export default function addRoom(){
         <input className={styles.input_box} placeholder="img URL" type="text"
         onChange={(e) => setImg(e.target.value)} value={img}/>
 
+        <input className={styles.input_box} placeholder="coordinates" type="text"
+        onChange={handleCoordinatesChange} value={coordinates}/>
+
         <input className={styles.input_box} placeholder="price" type="text"
         onChange={(e) => setPrice(e.target.value)} value={price}/>
 
         <input className={styles.input_detail} placeholder="detail" type="text"
          onChange={(e) => setDetail(e.target.value)} value={detail}/>
+         
 
         <button type="submit" className={styles.send_btn}>Send data</button>
         </form>
